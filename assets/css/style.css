@@ -933,3 +933,8 @@ section {
   font-size: 13px;
   color: #fff;
 }
+
+.btn-add {
+  background-color: #2d6760;
+  color: #fff;
+}
