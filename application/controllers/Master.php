@@ -65,6 +65,46 @@ class Master extends CI_Controller {
 		redirect('Master/FirstAid');
 	}
 
+	public function edit_firstaid($value='')
+	{
+		$this->load->view('V_header');
+		$this->load->view('V_master_firstaid_edit');
+		$this->load->view('V_footer');
+	}
+
+	public function edited_firstaid()
+	{
+		$id = $this->uri->segment(3);
+
+		$config['upload_path'] = realpath(APPPATH . '../assets/files/firstaid');
+		$config['allowed_types'] 	= 'pdf|docx';
+		$config['remove_spaces'] 	= TRUE;
+		$config['max_size']             = 10265;
+		$config['encrypt_name']			= TRUE;
+
+		$this->load->library('upload', $config);
+		$this->upload->initialize($config);
+		if (!$this->upload->do_upload('File')) {
+			$error = array('error' => $this->upload->display_errors());
+			$this->session->set_flashdata("hapus", $this->upload->display_errors());
+			redirect('Master/FirstAid');
+		} else {
+			$uploaddata = $this->upload->data();
+		}
+
+		$data = array(
+			'Title' 		=> $this->input->post('Title'),
+			'Description' 	=> $this->input->post('Description'),
+			'File_Name'		=> $uploaddata['file_name'],
+			'Created_Date' 	=> date('Y-m-d')
+		);
+
+		$result = $this->M_master->editfirstaid($data, $id);
+		$this->session->set_flashdata("pesan", "Data saved successfully ");
+		redirect('Master/FirstAid');
+
+	}
+
 	public function SurvivalGuide()
 	{
 		$data['sg'] = $this->M_master->getsurvivalguide();
@@ -118,6 +158,47 @@ class Master extends CI_Controller {
 		$this->db->query($sql);
 		$this->session->set_flashdata("pesan", "Data Telah Terhapus");
 		redirect('Master/SurvivalGuide');
+	}
+
+
+	public function edit_survivalguide($value='')
+	{
+		$this->load->view('V_header');
+		$this->load->view('V_master_survivalguide_edit');
+		$this->load->view('V_footer');
+	}
+
+	public function edited_survivalguide()
+	{
+		$id = $this->uri->segment(3);
+
+		$config['upload_path'] = realpath(APPPATH . '../assets/files/survivalguide');
+		$config['allowed_types'] 	= 'pdf|docx';
+		$config['remove_spaces'] 	= TRUE;
+		$config['max_size']             = 10265;
+		$config['encrypt_name']			= TRUE;
+
+		$this->load->library('upload', $config);
+		$this->upload->initialize($config);
+		if (!$this->upload->do_upload('File')) {
+			$error = array('error' => $this->upload->display_errors());
+			$this->session->set_flashdata("hapus", $this->upload->display_errors());
+			redirect('Master/SurvivalGuide');
+		} else {
+			$uploaddata = $this->upload->data();
+		}
+
+		$data = array(
+			'Title' 		=> $this->input->post('Title'),
+			'Description' 	=> $this->input->post('Description'),
+			'File_Name'		=> $uploaddata['file_name'],
+			'Created_Date' 	=> date('Y-m-d')
+		);
+
+		$result = $this->M_master->editsurvivalguide($data, $id);
+		$this->session->set_flashdata("pesan", "Data saved successfully ");
+		redirect('Master/SurvivalGuide');
+
 	}
 
 

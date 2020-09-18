@@ -23,6 +23,13 @@ class M_master extends CI_Model
 		return $insert_id;
 	}
 
+	public function editfirstaid($data, $id)
+	{
+
+		$this->db->where('ID_FAG', $id);
+		return $this->db->update('first_aid_guide', $data);
+	}
+
 	public function getsurvivalguide()
 	{
 		$query	= "SELECT * FROM `survival_guide_military`";
@@ -35,6 +42,13 @@ class M_master extends CI_Model
 		$this->db->insert('survival_guide_military',$data);
 		$insert_id = $this->db->insert_id();
 		return $insert_id;
+	}
+
+	public function editsurvivalguide($data, $id)
+	{
+
+		$this->db->where('ID_SGM', $id);
+		return $this->db->update('survival_guide_military', $data);
 	}
 
 }

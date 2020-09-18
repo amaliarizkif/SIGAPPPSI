@@ -49,7 +49,7 @@
                 <td><?php echo $f['Description']?></td>
                 <td><?php echo date("d-m-Y", strtotime($f['Created_Date']));?></td>
                 <td style="text-align: center;" >
-                  <a href="<?php echo base_url(); ?>Master/edit_firstaid/<?php echo $f['ID_SGM']?>"><button class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i></button></a>
+                  <a href="<?php echo base_url(); ?>Master/edit_survivalguide/<?php echo $f['ID_SGM']?>"><button class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i></button></a>
                   <button class="btn btn-danger" onclick="delSG(<?php echo $f['ID_SGM']?>)"><i class="fa fa-trash" aria-hidden="true"></i></button>
                 </td>
               </tr>
