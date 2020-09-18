@@ -21,10 +21,22 @@
   <link href="<?php echo base_url();?>assets/vendor/animate.css/animate.min.css" rel="stylesheet">
   <link href="<?php echo base_url();?>assets/vendor/icofont/icofont.min.css" rel="stylesheet">
   <link href="<?php echo base_url();?>assets/vendor/venobox/venobox.css" rel="stylesheet">
-   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery.dataTables.min.css"/>
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery.dataTables.min.css"/>
 
   <!-- Template Main CSS File -->
   <link href="<?php echo base_url();?>assets/css/style.css" rel="stylesheet">
+
+  <style type="text/css">
+    .dataTables_wrapper .dataTables_filter input {
+      margin-left: 0em;
+    }
+
+    .dataTables_wrapper .dataTables_filter label {
+      color: transparent;
+    }
+  </style>
+  <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
   <!-- =======================================================
   * Template Name: Amoeba - v2.0.0
@@ -66,4 +78,4 @@
 
     </div>
   </header><!-- End #header -->
-    <script src="<?php echo base_url();?>assets/vendor/jquery/jquery.min.js"></script>
+  <script src="<?php echo base_url();?>assets/vendor/jquery/jquery.min.js"></script>

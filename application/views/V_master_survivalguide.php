@@ -4,12 +4,28 @@
   <div class="container">
 
     <div class="section-title">
-      <h3>Survival Guide</h3>
+      <h3>Survival Guide Military</h3>
     </div>
+    <?php if($this->session->flashdata('pesan')!=NULL){?>
+      <div class="login__label alert alert-success" id="success-alert" style="color: black; display: none;"><b><?php echo $this->session->flashdata('pesan');?></b></div>
+      <script type="text/javascript">
+        $("#success-alert").fadeTo(2000, 500).slideUp(500, function(){
+          $("#success-alert").slideUp(500);
+        });
+      </script>
+    <?php } else if($this->session->flashdata('hapus')!=NULL){ ?>
+      <div class="login__label alert alert-danger" id="success-alert" style="color: black; display: none;"><b><?php echo $this->session->flashdata('hapus');?></b></div>
+      <script type="text/javascript">
+        $("#success-alert").fadeTo(2000, 500).slideUp(500, function(){
+          $("#success-alert").slideUp(500);
+        });
+      </script>
+    <?php }  ?>
+
     <div class="row mb-4">
 
       <div class="col-lg-12 order-1 order-lg-2">
-        <a href="<?php echo base_url(); ?>Master/add_firstaid">
+        <a href="<?php echo base_url(); ?>Master/add_survivalguide">
           <button type="button" class="btn btn-add"> <i class="mdi mdi-plus"></i>Add Survival Guide
           </button>
         </a>
@@ -20,7 +36,6 @@
         <table id="myTable" class="table table-bordered table-striped">
           <thead>
             <tr>
-              <th style="text-align: center;"></th>
               <th style="text-align: center;">Title</th>
               <th style="text-align: center;">Description</th>
               <th style="text-align: center;">Created Date</th>
@@ -28,13 +43,15 @@
             </tr>
           </thead>
           <tbody>
-            <?php foreach ($sg as $s){ ?>
+            <?php foreach ($sg as $f){ ?>
               <tr>
-                <td>1</td>
-                <td><?php echo $s['Title']?></td>
-                <td><?php echo $s['Description']?></td>
-                <td><?php echo date("d-m-Y", strtotime($s['Created_Date']));?></td>
-                <td></td>
+                <td><?php echo $f['Title']?></td>
+                <td><?php echo $f['Description']?></td>
+                <td><?php echo date("d-m-Y", strtotime($f['Created_Date']));?></td>
+                <td style="text-align: center;" >
+                  <a href="<?php echo base_url(); ?>Master/edit_firstaid/<?php echo $f['ID_SGM']?>"><button class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i></button></a>
+                  <button class="btn btn-danger" onclick="delSG(<?php echo $f['ID_SGM']?>)"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                </td>
               </tr>
             <?php } ?>
           </tbody>
@@ -50,5 +67,51 @@
 <script type="text/javascript">
   $(document).ready(function() {
     $('#myTable').DataTable();
+
+    $('.dataTables_filter input').addClass('form-control');
+    $('.dataTables_length select').addClass('form-control');
+    $('.dataTables_filter input').attr('placeholder','Search');
   });
+</script>
+<script type="text/javascript">
+  function delSG(ID){
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this file",
+      icon: "warning",
+      closeOnClickOutside: false,
+      buttons: {
+        confirm: {
+          text: "OK",
+          value: true,
+          visible: true,
+          className: "btn btn-lg btn-danger",
+          closeModal: true
+        },
+        cancel: {
+          text: "Cancel",
+          value: null,
+          visible: true,
+          className: "btn btn-lg btn-default",
+          closeModal: true
+        },
+      },
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        $.ajax({
+          url: '<?php echo base_url(); ?>Master/delete_survivalguide/' + ID,
+          success: function(result){
+            swal("Data have been deleted")
+            .then((value) => {
+              location.reload();
+            });
+          }
+        });
+      }
+    });
+
+    console.log(ID);
+  }
 </script>

@@ -7,11 +7,11 @@
  <section id="about" class="about">
   <div class="container">
     <div class="section-title">
-      <h3>Add First Aid</h3>
+      <h3>Add First Aid Guide</h3>
     </div>
     <div class="row">
       <div class="col-lg-9 order-1 order-lg-2">
-        <form>
+        <form action="<?php echo base_url()?>Master/added_firstaid" method="POST"  enctype="multipart/form-data">
           <div class="row mt-3 mb-3">
             <div class="col-md-3 col-sm-3">
               <p>Title</p>
@@ -25,7 +25,7 @@
               <p>Description</p>
             </div>
             <div class="col-md-9 col-sm-9">
-              <textarea class="form-control" name="Description" required=""></textarea>
+              <textarea class="form-control" name="Description" required></textarea>
             </div>
           </div>
           <div class="row mt-3 mb-3">
@@ -33,7 +33,7 @@
               <p>File</p>
             </div>
             <div class="col-md-9 col-sm-9">
-              <input type="file" class="form-control" maxlength="50" name="File" required>
+              <input type="file"  accept=".pdf,.docx" class="form-control" maxlength="50" name="File" required>
             </div>
           </div>
            <button type="submit" class="btn btn-add" style="float: right;"> <i class="mdi mdi-plus"></i>Submit
