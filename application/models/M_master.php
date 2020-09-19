@@ -23,6 +23,13 @@ class M_master extends CI_Model
 		return $insert_id;
 	}
 
+	public function getfirstaiddetail($id)
+	{
+		$query	= "SELECT * FROM `first_aid_guide` where ID_FAG = '".$id."'";
+		$emp = $this->db->query($query);
+		return $emp->result_array();
+	}
+
 	public function editfirstaid($data, $id)
 	{
 
@@ -44,11 +51,39 @@ class M_master extends CI_Model
 		return $insert_id;
 	}
 
+	public function getsurvivalguidedetail($id)
+	{
+		$query	= "SELECT * FROM `survival_guide_military` where ID_SGM = '".$id."'";
+		$emp = $this->db->query($query);
+		return $emp->result_array();
+	}
+
 	public function editsurvivalguide($data, $id)
 	{
 
 		$this->db->where('ID_SGM', $id);
 		return $this->db->update('survival_guide_military', $data);
+	}
+
+	public function getprofile()
+	{
+		$query	= "SELECT * FROM `profile`";
+		$emp = $this->db->query($query);
+		return $emp->result_array();
+	}
+
+	public function addprofile($data)
+	{
+		$this->db->insert('profile',$data);
+		$insert_id = $this->db->insert_id();
+		return $insert_id;
+	}
+
+	public function editprofile($data, $id)
+	{
+
+		$this->db->where('ID_User', $id);
+		return $this->db->update('profile', $data);
 	}
 
 }

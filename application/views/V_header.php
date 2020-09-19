@@ -69,7 +69,7 @@
             <ul>
               <li><a href="<?php echo base_url();?>Master/FirstAid">First Aid</a></li>
               <li><a href="<?php echo base_url();?>Master/SurvivalGuide">Survival Guide</a></li>
-              <li><a href="<?php echo base_url();?>">User</a></li>
+              <li><a href="<?php echo base_url();?>Master/Profile">Profile</a></li>
             </ul>
           </li>
           <li><a href="#contact">Contact Us</a></li>
