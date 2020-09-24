@@ -33,17 +33,19 @@
 	<div class="hero-container" style="padding-top: 0px;">
 		<h1>Login to SIGAP</h1>
 		<h2 style="font-weight: 550; text-align: center;">Sistem Pelaporan Kesehatan pada Operasi Matra Gabungan Mabes TNI</h2>
+
 		<div class="card">
 			<div class="card-body">
-				<form>
+				<h5 class="" style="text-align: center; color: red;"><?php echo $this->session->flashdata('pesan')?></h5>
+				<form action="<?php echo base_url()?>Login/dologin" method="POST"  enctype="multipart/form-data">
 					<div class="form-group">
 						<label for="exampleInputEmail1">Email address</label>
-						<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+						<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="Email" placeholder="Enter email">
 						
 					</div>
 					<div class="form-group">
 						<label for="exampleInputPassword1">Password</label>
-						<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+						<input type="password" name="Password" class="form-control" id="exampleInputPassword1" placeholder="Password">
 					</div>
 
 					<button style="float: right;" type="submit" class="btn-get-started" >Submit</button>
