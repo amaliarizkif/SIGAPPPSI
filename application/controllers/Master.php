@@ -243,6 +243,39 @@ class Master extends CI_Controller {
 		redirect('Master/Profile');
 	}
 
+	public function edit_profile($value='')
+	{
+		$id = $this->uri->segment(3);
+		$data['pf'] = $this->M_master->getprofiledetail($id);
+		$this->load->view('V_header');
+		$this->load->view('V_master_profile_edit',$data);
+		$this->load->view('V_footer');
+	}
+
+	public function edited_profile($value='')
+	{
+		$id = $this->uri->segment(3);
+		$data = array(
+			'Nama' 		=> $this->input->post('Nama'),
+			'Tempat_Lahir' 	=> $this->input->post('Tempat_Lahir'),
+			'Tanggal_Lahir'		=> $this->input->post('Tanggal_Lahir'),
+			'Pangkat/Korps'		=> $this->input->post('Pangkat'),
+			'NRP/NBI'		=> $this->input->post('NRP'),
+			'Jabatan'		=> $this->input->post('Jabatan'),
+			'Kesatuan'		=> $this->input->post('Kesatuan'),
+			'Gol_Darah'		=> $this->input->post('Gol_darah'),
+			'Email'		=> $this->input->post('Email'),
+			'Password'		=> $this->input->post('Password'),
+		);
+
+		// print_r($data);
+
+		$result = $this->M_master->editprofile($data,$id);
+		$this->session->set_flashdata("pesan", "Data saved successfully ");
+		redirect('Master/Profile');
+	}
+
+
 	public function delete_user($value='')
 	{
 		$id = $this->uri->segment(3);
@@ -250,6 +283,15 @@ class Master extends CI_Controller {
 		$this->db->query($sql);
 		$this->session->set_flashdata("pesan", "Data Telah Terhapus");
 		redirect('Master/Profile');
+	}
+
+	public function detail_profile($value='')
+	{
+		$id = $this->uri->segment(3);
+		$data['pf'] = $this->M_master->getprofiledetail($id);
+		$this->load->view('V_header');
+		$this->load->view('V_master_profile_detail',$data);
+		$this->load->view('V_footer');
 	}
 
 }

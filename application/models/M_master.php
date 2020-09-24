@@ -86,6 +86,13 @@ class M_master extends CI_Model
 		return $this->db->update('profile', $data);
 	}
 
+	public function getprofiledetail($id)
+	{
+		$query	= "SELECT * FROM `profile` where ID_User = '".$id."'";
+		$emp = $this->db->query($query);
+		return $emp->result_array();
+	}
+
 
 
 }

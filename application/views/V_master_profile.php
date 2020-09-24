@@ -57,8 +57,8 @@
                 <td><?php echo $f['Kesatuan']?>
                 <!-- <td><?php echo $f['Gol_Darah']?> -->
                 <td style="text-align: center;" >
-                  <a href="<?php echo base_url(); ?>Master/edit_firstaid/<?php echo $f['ID_User']?>"><button class="btn btn-success"><i class="fa fa-info" aria-hidden="true"></i></button></a>
-                  <a href="<?php echo base_url(); ?>Master/edit_firstaid/<?php echo $f['ID_User']?>"><button class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i></button></a>
+                  <a href="<?php echo base_url(); ?>Master/detail_profile/<?php echo $f['ID_User']?>"><button class="btn btn-success"><i class="fa fa-info" aria-hidden="true"></i></button></a>
+                  <a href="<?php echo base_url(); ?>Master/edit_profile/<?php echo $f['ID_User']?>"><button class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i></button></a>
                   <button class="btn btn-danger" onclick="delUser(<?php echo $f['ID_User']?>)"><i class="fa fa-trash" aria-hidden="true"></i></button>
                 </td>
               </tr>
