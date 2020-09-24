@@ -25,7 +25,7 @@
     <div class="row mb-4">
 
       <div class="col-lg-12 order-1 order-lg-2">
-        <a href="<?php echo base_url(); ?>Master/add_firstaid">
+        <a href="<?php echo base_url(); ?>Master/add_profile">
           <button type="button" class="btn btn-add"> <i class="mdi mdi-plus"></i>Add Profile
           </button>
         </a>
@@ -57,8 +57,9 @@
                 <td><?php echo $f['Kesatuan']?>
                 <!-- <td><?php echo $f['Gol_Darah']?> -->
                 <td style="text-align: center;" >
+                  <a href="<?php echo base_url(); ?>Master/edit_firstaid/<?php echo $f['ID_User']?>"><button class="btn btn-success"><i class="fa fa-info" aria-hidden="true"></i></button></a>
                   <a href="<?php echo base_url(); ?>Master/edit_firstaid/<?php echo $f['ID_User']?>"><button class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i></button></a>
-                  <button class="btn btn-danger" onclick="delFA(<?php echo $f['ID_User']?>)"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                  <button class="btn btn-danger" onclick="delUser(<?php echo $f['ID_User']?>)"><i class="fa fa-trash" aria-hidden="true"></i></button>
                 </td>
               </tr>
             <?php } ?>
@@ -82,7 +83,7 @@
   });
 </script>
 <script type="text/javascript">
-  function delFA(ID){
+  function delUser(ID){
     swal({
       title: "Are you sure?",
       text: "Once deleted, you will not be able to recover this file",
@@ -109,7 +110,7 @@
     .then((willDelete) => {
       if (willDelete) {
         $.ajax({
-          url: '<?php echo base_url(); ?>Master/delete_firstaid/' + ID,
+          url: '<?php echo base_url(); ?>Master/delete_user/' + ID,
           success: function(result){
             swal("Data have been deleted")
             .then((value) => {

@@ -86,5 +86,7 @@ class M_master extends CI_Model
 		return $this->db->update('profile', $data);
 	}
 
+
+
 }
 ?>

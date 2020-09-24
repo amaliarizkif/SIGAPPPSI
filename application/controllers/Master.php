@@ -67,8 +67,10 @@ class Master extends CI_Controller {
 
 	public function edit_firstaid($value='')
 	{
+		$id = $this->uri->segment(3);
+		$data['fa'] = $this->M_master->getfirstaiddetail($id);
 		$this->load->view('V_header');
-		$this->load->view('V_master_firstaid_edit');
+		$this->load->view('V_master_firstaid_edit',$data);
 		$this->load->view('V_footer');
 	}
 
@@ -163,8 +165,10 @@ class Master extends CI_Controller {
 
 	public function edit_survivalguide($value='')
 	{
+		$id = $this->uri->segment(3);
+		$data['sg'] = $this->M_master->getsurvivalguidedetail($id);
 		$this->load->view('V_header');
-		$this->load->view('V_master_survivalguide_edit');
+		$this->load->view('V_master_survivalguide_edit', $data);
 		$this->load->view('V_footer');
 	}
 
@@ -202,11 +206,50 @@ class Master extends CI_Controller {
 	}
 
 
-	public function User()
+	public function Profile()
+	{
+		$data['pf'] = $this->M_master->getprofile();
+		$this->load->view('V_header');
+		$this->load->view('V_master_profile',$data);
+		$this->load->view('V_footer');
+	}
+
+	public function add_profile($value='')
 	{
 		$this->load->view('V_header');
-		$this->load->view('V_home');
+		$this->load->view('V_master_profile_add');
 		$this->load->view('V_footer');
+	}
+
+	public function added_profile($value='')
+	{
+		$data = array(
+			'Nama' 		=> $this->input->post('Nama'),
+			'Tempat_Lahir' 	=> $this->input->post('Tempat_Lahir'),
+			'Tanggal_Lahir'		=> $this->input->post('Tanggal_Lahir'),
+			'Pangkat/Korps'		=> $this->input->post('Pangkat'),
+			'NRP/NBI'		=> $this->input->post('NRP'),
+			'Jabatan'		=> $this->input->post('Jabatan'),
+			'Kesatuan'		=> $this->input->post('Kesatuan'),
+			'Gol_Darah'		=> $this->input->post('Gol_darah'),
+			'Email'		=> $this->input->post('Email'),
+			'Password'		=> $this->input->post('Password'),
+		);
+
+		// print_r($data);
+
+		$result = $this->M_master->addprofile($data);
+		$this->session->set_flashdata("pesan", "Data saved successfully ");
+		redirect('Master/Profile');
+	}
+
+	public function delete_user($value='')
+	{
+		$id = $this->uri->segment(3);
+		$sql = "Delete from profile WHERE ID_User = '".$id."'";
+		$this->db->query($sql);
+		$this->session->set_flashdata("pesan", "Data Telah Terhapus");
+		redirect('Master/Profile');
 	}
 
 }
