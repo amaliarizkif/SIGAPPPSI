@@ -18,7 +18,7 @@ crossorigin=""></script>
  <section id="about" class="about">
   <div class="container">
     <div class="section-title">
-      <h3>Emergency Call</h3>
+      <h3>Emergency Reports</h3>
     </div>
     <?php if($this->session->flashdata('pesan')!=NULL){?>
       <div class="login__label alert alert-success" id="success-alert" style="color: black; display: none;"><b><?php echo $this->session->flashdata('pesan');?></b></div>
@@ -61,6 +61,14 @@ crossorigin=""></script>
             <div class="col-md-9 col-sm-9">
               <input type="file"  accept=".png,.jpeg,.jpg" class="form-control" maxlength="50" name="File" required>
               <small>Format:.png, .jpg, .jpeg | Max size: 5000kb </small>
+            </div>
+          </div>
+          <div class="row mt-3 mb-3">
+            <div class="col-md-3 col-sm-3">
+              <p>Doctor </p>
+            </div>
+            <div class="col-md-9 col-sm-9">
+              Dr.Faika Novadianaz,Sp.M
             </div>
           </div>
           <div class="row mt-3 mb-3">

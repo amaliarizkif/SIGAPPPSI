@@ -22,18 +22,32 @@ class Login extends CI_Controller {
 		if($_POST) {
 			$data['email']= $this->input->post('Email');
 			$data['password']= $this->input->post('Password');
-			$result = $this->M_login->login($data);
-
-			print_r($result);
+			$result = $this->M_login->checklogin($data);
 
 			if(!empty($result)) {
-				
-				$this->session->set_userdata(array(
-					'ID_User' 	=> $result[0]['ID_User'],
-					'Nama' 		=> $result[0]['Nama'],
-					'is_login' 	=> TRUE,
-					'logged'	=> TRUE
-				));
+
+				if ($result[0]['Role'] == 'Dokter') {
+					$login = $this->M_login->logindokter($data);
+					$this->session->set_userdata(array(
+						'ID_Dokter' => $login[0]['ID_Dokter'],
+						'Nama' 		=> $login[0]['Nama'],
+						'Email' 	=> $login[0]['Email'],
+						'Role'		=> $result[0]['Role'],
+						'is_login' 	=> TRUE,
+						'logged'	=> TRUE
+					));
+				}else{
+					$login = $this->M_login->login($data);
+					$this->session->set_userdata(array(
+						'ID_User' 	=> $login[0]['ID_User'],
+						'ID_Atasan' => $login[0]['ID_Atasan'],
+						'Nama' 		=> $login[0]['Nama'],
+						'Email' 	=> $login[0]['Email'],
+						'Role'		=> $result[0]['Role'],
+						'is_login' 	=> TRUE,
+						'logged'	=> TRUE
+					));
+				}
 
 				redirect('Welcome');
 				

@@ -10,8 +10,18 @@
 --------------------------------------------------------------*/
 body {
   font-family: "Open Sans", sans-serif;
-  color: #777;
+  color: #000;
+  /*background: #181818;*/
+  /*background-size: 1920px 1080px;*/
 }
+
+body .bodyhome {
+/*  font-family: "Open Sans", sans-serif;
+  color: #000;
+  background: #181818;*/
+  /*background-size: 1920px 1080px;*/
+}
+
 
 a {
   color: #43aea0;
@@ -23,7 +33,7 @@ a:hover {
 }
 
 h1, h2, h3, h4, h5, h6, .font-primary {
-  font-family: "Lato", sans-serif;
+  font-family: "Suez One", sans-serif;
 }
 
 /*--------------------------------------------------------------
@@ -37,8 +47,8 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   border-radius: 3px;
   right: 15px;
   bottom: 15px;
-  background: #70b9b0;
-  color: #fff;
+  background: #fff;
+  color: #000;
   transition: display 0.5s ease-in-out;
   z-index: 99999;
 }
@@ -48,11 +58,20 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   position: absolute;
   top: 8px;
   left: 8px;
+  color: #000;
+}
+
+.back-to-top i:hover {
+  font-size: 24px;
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  color: #fff;
 }
 
 .back-to-top:hover {
   color: #fff;
-  background: #8bc6bf;
+  background: #333a28;
   transition: background 0.2s ease-in-out;
 }
 
@@ -65,11 +84,11 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   z-index: 997;
   transition: all 0.5s;
   padding: 20px 0;
-  background: #2d6760;
+  background: #4e5427;
 }
 
 #header.header-scrolled {
-  background: #1d443f;
+  background: #4e5427;
   height: 60px;
   padding: 10px 0;
 }
@@ -101,8 +120,14 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   }
 }
 
+#mainhome {
+  margin-top: 80px;
+  background: #181818;
+}
+
 #main {
   margin-top: 80px;
+  background: #fff;
 }
 
 /*--------------------------------------------------------------
@@ -124,15 +149,15 @@ h1, h2, h3, h4, h5, h6, .font-primary {
 .nav-menu a {
   display: block;
   position: relative;
-  color: #d2ece9;
+  color: #fff;
   padding: 10px 15px;
   transition: 0.3s;
   font-size: 14px;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Suez One", sans-serif;
 }
 
 .nav-menu a:hover, .nav-menu .active > a, .nav-menu li:hover > a {
-  color: #9cd5ce;
+  color: #333a28;
   text-decoration: none;
 }
 
@@ -166,11 +191,11 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   font-size: 14px;
   font-weight: 500;
   text-transform: none;
-  color: #25564f;
+  color: #333a28;
 }
 
 .nav-menu .drop-down ul a:hover, .nav-menu .drop-down ul .active > a, .nav-menu .drop-down ul li:hover > a {
-  color: #70b9b0;
+  color: #333a28;
 }
 
 .nav-menu .drop-down > a:after {
@@ -223,7 +248,7 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   left: -260px;
   width: 260px;
   padding-top: 18px;
-  background: #01292a;
+  background: #4e5427;
   transition: 0.4s;
 }
 
@@ -320,7 +345,16 @@ h1, h2, h3, h4, h5, h6, .font-primary {
 #hero {
   width: 100%;
   height: 75vh;
-  background: url("../img/hero-background.jpg") top center;
+  background: url("../img/patrol_2.jpg") top center;
+  background-size: cover;
+  position: relative;
+  margin-bottom: -80px;
+}
+
+#herohome {
+  width: 100%;
+  height: 75vh;
+  background: url("../img/patrol.jpg") top center;
   background-size: cover;
   position: relative;
   margin-bottom: -80px;
@@ -328,7 +362,17 @@ h1, h2, h3, h4, h5, h6, .font-primary {
 
 #hero:before {
   content: "";
-  background: rgba(112, 185, 176, 0.85);
+  background: rgba(112, 185, 176, 0.1);
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+#herohome:before {
+  content: "";
+  background: rgba(112, 185, 176, 0.1);
   position: absolute;
   bottom: 0;
   top: 0;
@@ -337,6 +381,21 @@ h1, h2, h3, h4, h5, h6, .font-primary {
 }
 
 #hero .hero-container {
+  font-family: "Suez One", sans-serif;
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  padding-top: 80px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  /*text-align: center;*/
+}
+
+#herohome .hero-container {
   position: absolute;
   bottom: 0;
   top: 0;
@@ -359,14 +418,14 @@ h1, h2, h3, h4, h5, h6, .font-primary {
 }
 
 #hero h2 {
-  color: #eee;
+  color: #000;
   margin-bottom: 50px;
   font-size: 20px;
   font-weight: 300;
 }
 
 #hero .btn-get-started {
-  font-family: "Lato", sans-serif;
+  font-family: "Suez One", sans-serif;
   font-weight: 400;
   font-size: 16px;
   letter-spacing: 1px;
@@ -374,18 +433,35 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   padding: 8px 28px 10px 28px;
   border-radius: 50px;
   transition: 0.5s;
-  border: 1px solid #fff;
-  color: #fff;
+  border: 1px solid #49684d;
+  color: #49684d;
 }
 
 #hero .btn-get-started:hover {
-  background: #fff;
-  color: #70b9b0;
-  border: 1px solid #70b9b0;
+    background: #49684d;
+    color: #f8f9fa;
+    border: 1px solid #fff;
 }
 
-.card .btn-get-started {
-  font-family: "Lato", sans-serif;
+#herohome h1 {
+  font-family: "Suez One", sans-serif;
+  margin: 0 0 10px 0;
+  font-size: 48px;
+  font-weight: 300;
+  line-height: 56px;
+  color: #fff;
+}
+
+#herohome h2 {
+  font-family: "Suez One", sans-serif;
+  color: #eee;
+  margin-bottom: 50px;
+  font-size: 20px;
+  font-weight: 300;
+}
+
+#herohome .btn-get-started {
+  font-family: "Suez One", sans-serif;
   font-weight: 400;
   font-size: 16px;
   letter-spacing: 1px;
@@ -395,7 +471,26 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   transition: 0.5s;
   border: 1px solid #fff;
   color: #fff;
-  background-color: #70b9b0;
+}
+
+#herohome .btn-get-started:hover {
+  background: #4e5427;
+  color: #fff;
+  border: 1px solid #fff;
+}
+
+.card .btn-get-started {
+  font-family: "Suez One", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 8px 28px 10px 28px;
+  border-radius: 50px;
+  transition: 0.5s;
+  border: 1px solid #fff;
+  color: #fff;
+  background-color: #fff;
   
 }
 
@@ -501,8 +596,19 @@ section {
   margin-bottom: 15px;
 }
 
+.team .icon {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
 .services .icon i {
   color: #70b9b0;
+  font-size: 42px;
+}
+
+.team .icon i {
+  color: #4e5427;
   font-size: 42px;
 }
 
@@ -515,6 +621,18 @@ section {
 
 .services .title a {
   color: #343a40;
+  transition: 0.3s;
+}
+
+.team .title {
+  font-weight: 700;
+  margin-bottom: 15px;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+
+.team .title a {
+  color: #000;
   transition: 0.3s;
 }
 
@@ -547,7 +665,7 @@ section {
 }
 
 .call-to-action .cta-btn {
-  font-family: "Lato", sans-serif;
+  font-family: "Suez One", sans-serif;
   font-weight: 400;
   font-size: 16px;
   letter-spacing: 1px;
@@ -711,6 +829,7 @@ section {
   box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.1);
   padding: 30px 20px;
   background: #fff;
+  border-radius: 10px;
 }
 
 .team .member img {
@@ -740,10 +859,11 @@ section {
 
 .team .member .social {
   margin-top: 15px;
+  color: #000;
 }
 
 .team .member .social a {
-  color: #92cac3;
+  color: #000;
   transition: 0.3s;
 }
 
@@ -772,7 +892,7 @@ section {
 .contact .contact-about p {
   font-size: 14px;
   line-height: 24px;
-  font-family: "Lato", sans-serif;
+  font-family: "Suez One", sans-serif;
   color: #888;
 }
 
@@ -917,7 +1037,7 @@ section {
 # Footer
 --------------------------------------------------------------*/
 #footer {
-  background: #073839;
+  background: #4e5427;
   padding: 30px 0;
   color: #fff;
   font-size: 14px;

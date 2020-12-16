@@ -7,6 +7,13 @@ class Master extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('M_master');
+		$this->load->library('pdf');
+		
+		if ($this->session->userdata['logged'] == FALSE)
+		{
+			redirect('Login');
+		}
+		
 	}
 	
 
@@ -16,6 +23,8 @@ class Master extends CI_Controller {
 		$this->load->view('V_header');
 		$this->load->view('V_master_firstaid',$data);
 		$this->load->view('V_footer');
+
+		// print_r($data);
 	}
 
 	public function add_firstaid($value='')
@@ -230,10 +239,11 @@ class Master extends CI_Controller {
 			'Pangkat/Korps'		=> $this->input->post('Pangkat'),
 			'NRP/NBI'		=> $this->input->post('NRP'),
 			'Jabatan'		=> $this->input->post('Jabatan'),
-			'Kesatuan'		=> $this->input->post('Kesatuan'),
+			// 'Kesatuan'		=> $this->input->post('Kesatuan'),
 			'Gol_Darah'		=> $this->input->post('Gol_darah'),
 			'Email'		=> $this->input->post('Email'),
 			'Password'		=> $this->input->post('Password'),
+			'Role'		=> 'User',
 		);
 
 		// print_r($data);
@@ -262,7 +272,7 @@ class Master extends CI_Controller {
 			'Pangkat/Korps'		=> $this->input->post('Pangkat'),
 			'NRP/NBI'		=> $this->input->post('NRP'),
 			'Jabatan'		=> $this->input->post('Jabatan'),
-			'Kesatuan'		=> $this->input->post('Kesatuan'),
+			// 'Kesatuan'		=> $this->input->post('Kesatuan'),
 			'Gol_Darah'		=> $this->input->post('Gol_darah'),
 			'Email'		=> $this->input->post('Email'),
 			'Password'		=> $this->input->post('Password'),
@@ -292,6 +302,173 @@ class Master extends CI_Controller {
 		$this->load->view('V_header');
 		$this->load->view('V_master_profile_detail',$data);
 		$this->load->view('V_footer');
+	}
+
+	public function ExportFirstAid($value='')
+	{
+		$pdf = new FPDF('P','mm','A4');
+        // membuat halaman baru
+		$pdf->AddPage();
+        // setting jenis font yang akan digunakan
+
+		$pdf->SetFont('Arial','',10);
+
+		$pdf->Cell(40,6,'No. Surat	: 001/FAG/SGP/XI/2020',0,1);
+		$pdf->Cell(80,6,'No. Cetak	: 1',0,1);
+		$pdf->Cell(40,6,'Lampiran	: -',0,1);
+
+		$pdf->SetFont('Arial','B',16);
+        // mencetak string 
+		// $pdf->header();
+		$pdf->Cell(190,7,'First Aid Guide',0,1,'C');
+		
+
+		$pdf->SetFont('Arial','B',12);
+        // $pdf->Cell(190,7,'DAFTAR SISWA KELAS IX JURUSAN REKAYASA PERANGKAT LUNAK',0,1,'C');
+        // Memberikan space kebawah agar tidak terlalu rapat
+		$pdf->Cell(10,7,'',0,1);
+		$pdf->SetFont('Arial','B',10);
+		// $pdf->Cell(40,6,'Title',1,0);
+		// $pdf->Cell(110,6,'Description',1,0);
+		// $pdf->Cell(40,6,'Created Date',1,1);
+		$pdf->SetFont('Arial','',10);
+		$data['fa'] = $this->M_master->getfirstaid();
+		// for ($i=0; $i < 200; $i++) { 
+		// // $image1 = base_url()."/assets/". $c->image ;
+			// $pdf->Cell(40,10,'abdabsdbjb', 1, 0);
+			// $pdf->Cell(80,10,'abdabsdbjb',1,0);
+			// $pdf->Cell(40,10,'abdabsdbjb',1,1);
+		// 	$pdf->Cell(25,10,'abdabsdbjb',1,1); 
+		// }
+	// $pdf->Footer();
+		foreach ($data['fa'] as $c){
+			$pdf->SetFont('Arial','B',10);
+			$pdf->Write(10, 'Title : ');
+			$pdf->SetFont('Arial','',10);
+			$pdf->Write(10, $c['Title']);
+			$pdf->Ln(6);
+			$pdf->SetFont('Arial','B',10);
+			$pdf->Write(10, 'Created Date : ');
+			$pdf->SetFont('Arial','',10);
+			$pdf->Write(10, $c['Created_Date']);
+			$pdf->Ln(6);
+			$pdf->SetFont('Arial','B',10);
+			$pdf->Write(10, 'Description : ');
+			$pdf->SetFont('Arial','',10);
+			$pdf->Ln(8);
+			$pdf->MultiCell(180, 6, $c['Description']);
+			$pdf->Ln(10);
+		}
+		$pdf->Output();
+	}
+
+	public function ExportSurvivalGuide($value='')
+	{
+		$pdf = new FPDF('P','mm','A4');
+        // membuat halaman baru
+		$pdf->AddPage();
+        // setting jenis font yang akan digunakan
+
+		$pdf->SetFont('Arial','',10);
+
+		$pdf->Cell(40,6,'No. Surat	: 001/SGM/SGP/XI/2020',0,1);
+		$pdf->Cell(110,6,'No. Cetak	: 1',0,1);
+		$pdf->Cell(40,6,'Lampiran	: -',0,1);
+
+		$pdf->SetFont('Arial','B',16);
+        // mencetak string 
+		// $pdf->header();
+		$pdf->Cell(190,7,'Survival Guide Military',0,1,'C');
+		
+
+		$pdf->SetFont('Arial','B',12);
+        // $pdf->Cell(190,7,'DAFTAR SISWA KELAS IX JURUSAN REKAYASA PERANGKAT LUNAK',0,1,'C');
+        // Memberikan space kebawah agar tidak terlalu rapat
+		$pdf->Cell(10,7,'',0,1);
+		// $pdf->SetFont('Arial','B',10);
+		// $pdf->Cell(40,6,'Title',1,0);
+		// $pdf->Cell(110,6,'Description',1,0);
+		// $pdf->Cell(40,6,'Created Date',1,1);
+		$pdf->SetFont('Arial','',10);
+		$data['sg'] = $this->M_master->getsurvivalguide();
+		// for ($i=0; $i < 200; $i++) { 
+		// // $image1 = base_url()."/assets/". $c->image ;
+			// $pdf->Cell(40,10,'abdabsdbjb', 1, 0);
+			// $pdf->Cell(80,10,'abdabsdbjb',1,0);
+			// $pdf->Cell(40,10,'abdabsdbjb',1,1);
+		// 	$pdf->Cell(25,10,'abdabsdbjb',1,1); 
+		// }
+		// $pdf->Footer();
+		foreach ($data['sg'] as $c){
+			$pdf->SetFont('Arial','B',10);
+			$pdf->Write(10, 'Title : ');
+			$pdf->SetFont('Arial','',10);
+			$pdf->Write(10, $c['Title']);
+			$pdf->Ln(6);
+			$pdf->SetFont('Arial','B',10);
+			$pdf->Write(10, 'Created Date : ');
+			$pdf->SetFont('Arial','',10);
+			$pdf->Write(10, $c['Created_Date']);
+			$pdf->Ln(6);
+			$pdf->SetFont('Arial','B',10);
+			$pdf->Write(10, 'Description : ');
+			$pdf->SetFont('Arial','',10);
+			$pdf->Ln(8);
+			$pdf->MultiCell(180, 6, $c['Description']);
+			$pdf->Ln(10); 
+		}
+		$pdf->Output();
+	}
+
+	public function ExportProfile($value='')
+	{
+		$pdf = new FPDF('P','mm','A4');
+        // membuat halaman baru
+		$pdf->AddPage();
+        // setting jenis font yang akan digunakan
+
+		$pdf->SetFont('Arial','',10);
+
+		$pdf->Cell(40,6,'No. Surat	: 001/USR/SGP/XI/2020',0,1);
+		$pdf->Cell(110,6,'No. Cetak	: 1',0,1);
+		$pdf->Cell(40,6,'Lampiran	: -',0,1);
+
+		$pdf->SetFont('Arial','B',16);
+        // mencetak string 
+		// $pdf->header();
+		$pdf->Cell(190,7,'Profile',0,1,'C');
+		
+
+		// $pdf->SetFont('Arial','B',12);
+        // $pdf->Cell(190,7,'DAFTAR SISWA KELAS IX JURUSAN REKAYASA PERANGKAT LUNAK',0,1,'C');
+        // Memberikan space kebawah agar tidak terlalu rapat
+
+
+
+		$pdf->Cell(10,7,'',0,1);
+		$pdf->SetFont('Arial','B',10);
+		$pdf->Cell(50,6,'Name',1,0);
+		$pdf->Cell(40,6,'TTL',1,0);
+		$pdf->Cell(40,6,'NRP/NBI',1,0);
+		$pdf->Cell(50,6,'Email',1,1);
+		$pdf->SetFont('Arial','',10);
+		$data['pf'] = $this->M_master->getprofile();
+		// // for ($i=0; $i < 200; $i++) { 
+		// // // $image1 = base_url()."/assets/". $c->image ;
+		// 	// $pdf->Cell(40,10,'abdabsdbjb', 1, 0);
+		// 	// $pdf->Cell(80,10,'abdabsdbjb',1,0);
+		// 	// $pdf->Cell(40,10,'abdabsdbjb',1,1);
+		// // 	$pdf->Cell(25,10,'abdabsdbjb',1,1); 
+		// // }
+		// // $pdf->Footer();
+		foreach ($data['pf'] as $c){
+			$pdf->Cell(50,6,$c['Nama'],1,0);
+			$pdf->Cell(40,6,$c['Tempat_Lahir'].','. $c['Tanggal_Lahir'],1,0);
+			$pdf->Cell(40,6,$c['NRP/NBI'],1,0);
+			$pdf->Cell(50,6,$c['Email'],1,1);
+		}
+
+		$pdf->Output();
 	}
 
 }

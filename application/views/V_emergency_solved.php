@@ -18,7 +18,7 @@ crossorigin=""></script>
  <section id="about" class="about">
   <div class="container">
     <div class="section-title">
-      <h3>Emergency Call Resolve</h3>
+      <h3>Emergency Report Resolve</h3>
     </div>
     <?php if($this->session->flashdata('pesan')!=NULL){?>
       <div class="login__label alert alert-success" id="success-alert" style="color: black; display: none;"><b><?php echo $this->session->flashdata('pesan');?></b></div>

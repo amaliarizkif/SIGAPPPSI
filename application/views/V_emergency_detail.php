@@ -22,7 +22,7 @@ crossorigin=""></script>
   <section id="about" class="about">
     <div class="container">
       <div class="section-title">
-        <h3>Emergency Call Detail</h3>
+        <h3>Emergency Reports Detail</h3>
       </div>
 
       <div class="row">
@@ -82,7 +82,7 @@ crossorigin=""></script>
               <h6>Solve Summary : </h6>
             </div>
             <div class="col-md-9 col-sm-9">
-              <?php echo $ec->Summary?>
+              <?php echo $ec->Solved_Summary?>
             </div>
           </div>
           <div class="row mt-3 mb-3">
@@ -90,7 +90,7 @@ crossorigin=""></script>
               <h6>Solve Evidence : </h6>
             </div>
             <div class="col-md-9 col-sm-9">
-              <img src="<?php echo base_url();?>assets/files/emergencycall/<?php echo $ec->Evidence?>" class="img-thumbnail">
+              <img src="<?php echo base_url();?>assets/files/emergencycall/<?php echo $ec->Solved_Evidence?>" class="img-thumbnail">
             </div>
           </div>
           <a href="<?php echo base_url(); ?>Emergency/EmergencyCall"><button class="btn btn-add" style="float: right;">Back</button></a>

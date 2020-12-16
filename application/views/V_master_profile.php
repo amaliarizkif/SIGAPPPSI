@@ -24,9 +24,13 @@
 
     <div class="row mb-4">
 
-      <div class="col-lg-12 order-1 order-lg-2">
+      <div class="col-lg-12" style="padding: 0px;">
         <a href="<?php echo base_url(); ?>Master/add_profile">
           <button type="button" class="btn btn-add"> <i class="mdi mdi-plus"></i>Add Profile
+          </button>
+        </a>
+        <a href="<?php echo base_url(); ?>Master/ExportProfile">
+          <button type="button" class="btn btn-add"> <i class="mdi mdi-plus"></i>Export
           </button>
         </a>
       </div>
@@ -41,7 +45,7 @@
               <th style="text-align: center;">Pangkat/Korps</th>
               <th style="text-align: center;">NRP/NBI</th>
               <th style="text-align: center;">Jabatan</th>
-              <th style="text-align: center;">Kesatuan</th>
+              <th style="text-align: center;">Email</th>
               <!-- <th style="text-align: center;">Gol Darah</th> -->
               <th style="text-align: center;" class="notexport">Action</th>
             </tr>
@@ -54,7 +58,7 @@
                 <td><?php echo $f['Pangkat/Korps']?>
                 <td><?php echo $f['NRP/NBI']?>
                 <td><?php echo $f['Jabatan']?>
-                <td><?php echo $f['Kesatuan']?>
+                <td><?php echo $f['Email']?>
                 <!-- <td><?php echo $f['Gol_Darah']?> -->
                 <td style="text-align: center;" >
                   <a href="<?php echo base_url(); ?>Master/detail_profile/<?php echo $f['ID_User']?>"><button class="btn btn-success"><i class="fa fa-info" aria-hidden="true"></i></button></a>

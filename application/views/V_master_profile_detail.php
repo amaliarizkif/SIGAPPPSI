@@ -61,14 +61,6 @@
         </div>
         <div class="row mt-3 mb-3">
           <div class="col-md-3 col-sm-3">
-            <p>Kesatuan</p>
-          </div>
-          <div class="col-md-9 col-sm-9">
-           <?php echo $pf[0]['Kesatuan']?>
-          </div>
-        </div>
-        <div class="row mt-3 mb-3">
-          <div class="col-md-3 col-sm-3">
             <p>Golongan Darah</p>
           </div>
           <div class="col-md-9 col-sm-9">

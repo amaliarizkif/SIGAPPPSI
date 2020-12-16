@@ -24,9 +24,13 @@
 
     <div class="row mb-4">
 
-      <div class="col-lg-12 order-1 order-lg-2">
+      <div class="col-lg-12" style="padding: 0px;">
         <a href="<?php echo base_url(); ?>Master/add_survivalguide">
           <button type="button" class="btn btn-add"> <i class="mdi mdi-plus"></i>Add Survival Guide
+          </button>
+        </a>
+        <a href="<?php echo base_url(); ?>Master/ExportSurvivalGuide">
+          <button type="button" class="btn btn-add"> <i class="mdi mdi-plus"></i>Export
           </button>
         </a>
       </div>
@@ -37,7 +41,7 @@
           <thead>
             <tr>
               <th style="text-align: center;">Title</th>
-              <th style="text-align: center;">Description</th>
+              <th style="text-align: center;" style="width: 400px;">Description</th>
               <th style="text-align: center;">Created Date</th>
               <th style="text-align: center;" class="notexport">Action</th>
             </tr>
@@ -46,7 +50,7 @@
             <?php foreach ($sg as $f){ ?>
               <tr>
                 <td><?php echo $f['Title']?></td>
-                <td><?php echo $f['Description']?></td>
+                <td><?php echo substr($f['Description'], 0, 80)?> ...</td>
                 <td><?php echo date("d-m-Y", strtotime($f['Created_Date']));?></td>
                 <td style="text-align: center;" >
                   <a href="<?php echo base_url(); ?>Master/edit_survivalguide/<?php echo $f['ID_SGM']?>"><button class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i></button></a>

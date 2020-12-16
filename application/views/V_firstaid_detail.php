@@ -37,8 +37,14 @@
       </div>
       <div class="col-lg-2 order-1 order-lg-2"></div>
     </div>
-    <br>   
-    <a href="<?php echo base_url(); ?>Guide/FirstAid"><button class="btn btn-add" style="float: right;">Back</button></a>
+    <br>
+
+    <div class="row" style="float: right;">
+      <a href="<?php echo base_url(); ?>Guide/DownloadfileFAG/<?php echo $fa[0]['ID_FAG']?>" target="_blank"><button class="btn btn-add">Download</button></a>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <a href="<?php echo base_url(); ?>Guide/FirstAid"><button class="btn btn-add">Back</button></a>
+    </div>
+    
 
 
 
